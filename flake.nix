@@ -12,6 +12,9 @@
           "aarch64-darwin"
         ] (system: f nixpkgs.legacyPackages.${system});
     in {
+      devShells = forAllSystems (pkgs: {
+        default = pkgs.callPackage ./shell.nix {};
+      });
     }
   ;
 }
