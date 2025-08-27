@@ -1,4 +1,6 @@
 {
+  networking.computerName = "Jav’s MacBook Air";
+  networking.hostName = "Javs-MacBook-Air";
   system.primaryUser = "javadmin";
   homebrew.enable = true;
   homebrew.casks = [
