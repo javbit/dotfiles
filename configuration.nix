@@ -1,7 +1,38 @@
 {
+  config,
+  ...
+}:
+
+{
   networking.computerName = "Jav’s MacBook Air";
   networking.hostName = "Javs-MacBook-Air";
-  system.primaryUser = "javadmin";
+  users.users = {
+    # Normal account.
+    jav = {
+      description = "Javed Mohamed";
+      home = "/Users/jav";
+    };
+    # Admin account.
+    javadmin = {
+      description = "Javed Mohamed (Admin)";
+      home = "/Users/javadmin";
+    };
+  };
+  system.primaryUser = config.users.users.javadmin.name;
+  home-manager.users = {
+    jav = { pkgs, ... }: {
+      home.packages = with pkgs; [
+        uutils-coreutils-noprefix
+        uutils-diffutils
+        uutils-findutils
+      ];
+      home.stateVersion = "25.05";
+    };
+    javadmin = { pkgs, ... }: {
+      home.packages = with pkgs; [];
+      home.stateVersion = "25.05";
+    };
+  };
   homebrew.enable = true;
   homebrew.casks = [
     "anki"
