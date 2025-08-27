@@ -2,6 +2,7 @@
   system.primaryUser = "javadmin";
   homebrew.enable = true;
   homebrew.casks = [
+    "anki"
     "ghostty"
     "orion"
   ];
