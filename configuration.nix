@@ -19,6 +19,7 @@
     };
   };
   system.primaryUser = config.users.users.javadmin.name;
+  home-manager.backupFileExtension = "bak";
   home-manager.users = {
     jav = { pkgs, ... }: {
       home.packages = with pkgs; [
@@ -26,6 +27,11 @@
         uutils-diffutils
         uutils-findutils
       ];
+      programs.zsh = {
+        enable = true;
+        autocd = true;
+        autosuggestion.enable = true;
+      };
       programs.helix = {
         enable = true;
         defaultEditor = true;
