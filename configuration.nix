@@ -26,6 +26,10 @@
         uutils-diffutils
         uutils-findutils
       ];
+      programs.helix = {
+        enable = true;
+        defaultEditor = true;
+      };
       home.stateVersion = "25.05";
     };
     javadmin = { pkgs, ... }: {
