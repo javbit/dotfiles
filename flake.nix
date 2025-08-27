@@ -18,7 +18,7 @@
         default = pkgs.callPackage ./shell.nix {};
       });
 
-      darwinConfigurations."Javeds-MacBook-Air" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."Javs-MacBook-Air" = nix-darwin.lib.darwinSystem {
         modules = [ ./configuration.nix ];
       };
     }
