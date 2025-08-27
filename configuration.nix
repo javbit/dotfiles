@@ -6,6 +6,7 @@
   homebrew.casks = [
     "anki"
     "ghostty"
+    "mullvad-vpn"
     "orion"
     "signal"
   ];
