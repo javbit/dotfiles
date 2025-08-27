@@ -3,7 +3,8 @@
 
   difftastic,
   helix,
-  jujutsu
+  jujutsu,
+  just
 }:
 
 mkShell {
@@ -11,5 +12,6 @@ mkShell {
     difftastic
     helix
     jujutsu
+    just
   ];
 }
