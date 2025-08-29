@@ -36,6 +36,21 @@
         enable = true;
         defaultEditor = true;
       };
+      programs.git = {
+        enable = true;
+        userName = "Javed Mohamed";
+        userEmail = "jav@deadbeef.moe";
+        difftastic = {
+          enable = true;
+          enableAsDifftool = true;
+        };
+        ignores = [
+          "*~"
+          "*.swp"
+          "result*"
+          ".direnv"
+        ];
+      };
       programs.jujutsu = {
         enable = true;
         settings = {
