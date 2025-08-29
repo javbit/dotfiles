@@ -52,6 +52,11 @@
     "signal"
   ];
   programs.direnv.enable = true;
+  security.pam.services.sudo_local = {
+    enable = true;
+    touchIdAuth = true;
+    watchIdAuth = true;
+  };
   nixpkgs.hostPlatform = "aarch64-darwin";
   nix.enable = false;
   system.stateVersion = 6;
