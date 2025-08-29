@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   ...
 }:
 
@@ -21,7 +22,7 @@
   system.primaryUser = config.users.users.javadmin.name;
   home-manager.backupFileExtension = "bak";
   home-manager.users = {
-    jav = { pkgs, ... }: {
+    jav = { config, pkgs, ... }: {
       home.packages = with pkgs; [
         uutils-coreutils-noprefix
         uutils-diffutils
@@ -59,6 +60,12 @@
             email = "jav@deadbeef.moe";
           };
           ui.pager = ":builtin";
+          ui.diff-formatter = [
+            (lib.meta.getExe config.programs.git.difftastic.package)
+            "--color=always"
+            "$left"
+            "$right"
+          ];
         };
       };
       home.stateVersion = "25.05";
