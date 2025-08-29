@@ -2,14 +2,12 @@
   mkShell,
 
   difftastic,
-  jujutsu,
-  just
+  just,
 }:
 
 mkShell {
   packages = [
     difftastic
-    jujutsu
     just
   ];
 }

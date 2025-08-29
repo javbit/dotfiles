@@ -36,6 +36,16 @@
         enable = true;
         defaultEditor = true;
       };
+      programs.jujutsu = {
+        enable = true;
+        settings = {
+          user = {
+            name = "Javed Mohamed";
+            email = "jav@deadbeef.moe";
+          };
+          ui.pager = ":builtin";
+        };
+      };
       home.stateVersion = "25.05";
     };
     javadmin = { pkgs, ... }: {
