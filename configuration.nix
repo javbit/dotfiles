@@ -79,9 +79,9 @@
   homebrew.casks = [
     "anki"
     "ghostty"
-    "mullvad-vpn"
     "orion"
     "signal"
+    "tailscale"
   ];
   programs.direnv.enable = true;
   security.pam.services.sudo_local = {
