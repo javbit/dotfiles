@@ -71,6 +71,7 @@
           ];
         };
       };
+      programs.aria2.enable = true;
       home.stateVersion = "25.05";
     };
     javadmin = { pkgs, ... }: {
