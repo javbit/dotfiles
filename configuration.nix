@@ -32,6 +32,9 @@
         enable = true;
         autocd = true;
         autosuggestion.enable = true;
+        envExtra = ''
+          eval $(/opt/homebrew/bin/brew shellenv)
+        '';
       };
       programs.helix = {
         enable = true;
