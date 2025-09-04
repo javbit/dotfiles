@@ -86,6 +86,7 @@
     "orion"
     "signal"
     "tailscale"
+    "tor-browser"
   ];
   programs.direnv.enable = true;
   security.pam.services.sudo_local = {
