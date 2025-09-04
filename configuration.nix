@@ -71,6 +71,15 @@
           ];
         };
       };
+      programs.ghostty = {
+        enable = true;
+        package = null; # App managed by homebrew.
+        enableZshIntegration = true;
+        settings = {
+          font-family = "PragmataPro Mono";
+          macos-icon = "paper";
+        };
+      };
       programs.aria2.enable = true;
       home.stateVersion = "25.05";
     };
