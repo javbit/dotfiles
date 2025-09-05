@@ -23,6 +23,9 @@
   home-manager.backupFileExtension = "bak";
   home-manager.users = {
     jav = { config, pkgs, ... }: {
+      nixpkgs.overlays = [
+        (import ./packages/ghostty-themes/overlay.nix)
+      ];
       home.packages = with pkgs; [
         uutils-coreutils-noprefix
         uutils-diffutils
@@ -78,7 +81,14 @@
         settings = {
           font-family = "PragmataPro Mono";
           macos-icon = "paper";
+          config-file = "config.custom";
         };
+      };
+      xdg.configFile."ghostty/themes" = {
+        enable = true;
+        force = true;
+        recursive = true;
+        source = "${pkgs.ghostty-themes}/themes";
       };
       programs.aria2.enable = true;
       home.stateVersion = "25.05";
