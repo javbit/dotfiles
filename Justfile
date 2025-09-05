@@ -8,3 +8,6 @@ switch:
 
 build:
     darwin-rebuild build --flake {{flake}}
+
+clean:
+    rm result
