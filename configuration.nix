@@ -35,9 +35,6 @@
         enable = true;
         autocd = true;
         autosuggestion.enable = true;
-        envExtra = ''
-          eval $(/opt/homebrew/bin/brew shellenv)
-        '';
       };
       programs.helix = {
         enable = true;
@@ -93,8 +90,15 @@
       programs.aria2.enable = true;
       home.stateVersion = "25.05";
     };
-    javadmin = { pkgs, ... }: {
-      home.packages = with pkgs; [];
+    javadmin = { ... }: {
+      programs.zsh = {
+        enable = true;
+        autocd = true;
+        autosuggestion.enable = true;
+        envExtra = ''
+          eval $(/opt/homebrew/bin/brew shellenv)
+        '';
+      };
       home.stateVersion = "25.05";
     };
   };
