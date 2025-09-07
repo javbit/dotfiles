@@ -110,6 +110,7 @@
   homebrew.casks = [
     "anki"
     "ghostty"
+    "mullvad-browser"
     "obsidian"
     "orion"
     "pareto-security"
