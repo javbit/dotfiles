@@ -35,6 +35,9 @@
         enable = true;
         autocd = true;
         autosuggestion.enable = true;
+        envExtra = ''
+          export TERMINFO=/Applications/Ghostty.app/Contents/Resources/terminfo
+        '';
       };
       programs.helix = {
         enable = true;
@@ -97,6 +100,7 @@
         autosuggestion.enable = true;
         envExtra = ''
           eval $(/opt/homebrew/bin/brew shellenv)
+          export TERMINFO=/Applications/Ghostty.app/Contents/Resources/terminfo
         '';
       };
       home.stateVersion = "25.05";
