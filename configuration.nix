@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   ...
@@ -23,75 +24,90 @@
   home-manager.backupFileExtension = "bak";
   home-manager.users = {
     jav = { config, pkgs, ... }: {
-      nixpkgs.overlays = [
-        (import ./packages/ghostty-themes/overlay.nix)
+      imports = [
+        ./modules/home/services/emacs.nix
       ];
-      home.packages = with pkgs; [
-        uutils-coreutils-noprefix
-        uutils-diffutils
-        uutils-findutils
-      ];
-      programs.zsh = {
-        enable = true;
-        autocd = true;
-        autosuggestion.enable = true;
-        envExtra = ''
-          export TERMINFO=/Applications/Ghostty.app/Contents/Resources/terminfo
-        '';
-      };
-      programs.helix = {
-        enable = true;
-        defaultEditor = true;
-      };
-      programs.git = {
-        enable = true;
-        userName = "Javed Mohamed";
-        userEmail = "jav@deadbeef.moe";
-        difftastic = {
-          enable = true;
-          enableAsDifftool = true;
-        };
-        ignores = [
-          "*~"
-          "*.swp"
-          "result*"
-          ".direnv"
+      config = {
+        nixpkgs.overlays = [
+          inputs.emacs-overlay.overlays.default
+          (import ./packages/ghostty-themes/overlay.nix)
+          (import ./packages/emacs/overlay.nix)
         ];
-      };
-      programs.jujutsu = {
-        enable = true;
-        settings = {
-          user = {
-            name = "Javed Mohamed";
-            email = "jav@deadbeef.moe";
+        home.packages = with pkgs; [
+          uutils-coreutils-noprefix
+          uutils-diffutils
+          uutils-findutils
+        ];
+        programs.zsh = {
+          enable = true;
+          autocd = true;
+          autosuggestion.enable = true;
+          envExtra = ''
+            export TERMINFO=/Applications/Ghostty.app/Contents/Resources/terminfo
+          '';
+        };
+        programs.helix = {
+          enable = true;
+          defaultEditor = true;
+        };
+        programs.git = {
+          enable = true;
+          userName = "Javed Mohamed";
+          userEmail = "jav@deadbeef.moe";
+          difftastic = {
+            enable = true;
+            enableAsDifftool = true;
           };
-          ui.pager = ":builtin";
-          ui.diff-formatter = [
-            (lib.meta.getExe config.programs.git.difftastic.package)
-            "--color=always"
-            "$left"
-            "$right"
+          ignores = [
+            "*~"
+            "*.swp"
+            "result*"
+            ".direnv"
           ];
         };
-      };
-      programs.ghostty = {
-        enable = true;
-        package = null; # App managed by homebrew.
-        enableZshIntegration = true;
-        settings = {
-          font-family = "PragmataPro Mono";
-          macos-icon = "paper";
-          config-file = "config.custom";
+        programs.jujutsu = {
+          enable = true;
+          settings = {
+            user = {
+              name = "Javed Mohamed";
+              email = "jav@deadbeef.moe";
+            };
+            ui.pager = ":builtin";
+            ui.diff-formatter = [
+              (lib.meta.getExe config.programs.git.difftastic.package)
+              "--color=always"
+              "$left"
+              "$right"
+            ];
+          };
         };
+        programs.ghostty = {
+          enable = true;
+          package = null; # App managed by homebrew.
+          enableZshIntegration = true;
+          settings = {
+            font-family = "PragmataPro Mono";
+            macos-icon = "paper";
+            config-file = "config.custom";
+          };
+        };
+        xdg.configFile."ghostty/themes" = {
+          enable = true;
+          force = true;
+          recursive = true;
+          source = "${pkgs.ghostty-themes}/themes";
+        };
+        programs.emacs = {
+          enable = true;
+          package = pkgs.my-emacs-with-pkgs;
+        };
+        services.emacs' = {
+          enable = true;
+          executable = "Applications/Emacs.app/Contents/MacOS/Emacs";
+        };
+        programs.aria2.enable = true;
+        home.stateVersion = "25.05";
       };
-      xdg.configFile."ghostty/themes" = {
-        enable = true;
-        force = true;
-        recursive = true;
-        source = "${pkgs.ghostty-themes}/themes";
-      };
-      programs.aria2.enable = true;
-      home.stateVersion = "25.05";
     };
     javadmin = { ... }: {
       programs.zsh = {

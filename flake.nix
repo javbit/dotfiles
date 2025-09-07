@@ -7,9 +7,16 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager }:
+  outputs = inputs @ { self, nixpkgs, nix-darwin, home-manager, emacs-overlay }:
     let
       forAllSystems = f:
         nixpkgs.lib.genAttrs [
@@ -21,6 +28,7 @@
       });
 
       darwinConfigurations."Javs-MacBook-Air" = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
           home-manager.darwinModules.default
