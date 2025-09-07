@@ -109,6 +109,9 @@
   homebrew.enable = true;
   homebrew.casks = [
     "anki"
+    "font-new-york"
+    "font-sf-mono"
+    "font-sf-pro"
     "ghostty"
     "mullvad-browser"
     "obsidian"
