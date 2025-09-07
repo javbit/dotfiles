@@ -107,6 +107,7 @@
     "anki"
     "ghostty"
     "orion"
+    "pareto-security"
     "signal"
     "tailscale"
     "tor-browser"
