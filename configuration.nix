@@ -106,6 +106,7 @@
   homebrew.casks = [
     "anki"
     "ghostty"
+    "obsidian"
     "orion"
     "pareto-security"
     "signal"
