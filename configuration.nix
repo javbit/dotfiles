@@ -106,6 +106,8 @@
             vertico
             orderless
             # Programming
+            ## Haskell
+            haskell-ts-mode
             ## OCaml
             tuareg
             ocaml-eglot
