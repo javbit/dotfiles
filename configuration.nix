@@ -100,6 +100,12 @@
         programs.emacs = {
           enable = true;
           package = pkgs.my-emacs-with-pkgs;
+          extraPackages = epkgs: with epkgs; [
+            # Completion
+            corfu
+            vertico
+            orderless
+          ];
         };
         services.emacs' = {
           enable = true;
