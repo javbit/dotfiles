@@ -107,6 +107,7 @@
             corfu
             vertico
             orderless
+            marginalia
             # Programming
             ## Haskell
             haskell-ts-mode
