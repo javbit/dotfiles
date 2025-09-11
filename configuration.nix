@@ -101,6 +101,8 @@
           enable = true;
           package = pkgs.my-emacs-with-pkgs;
           extraPackages = epkgs: with epkgs; [
+            exec-path-from-shell
+            envrc
             # Completion
             corfu
             vertico
