@@ -105,6 +105,10 @@
             corfu
             vertico
             orderless
+            # Programming
+            ## OCaml
+            tuareg
+            ocaml-eglot
           ];
         };
         services.emacs' = {
