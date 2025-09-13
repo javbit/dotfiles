@@ -37,7 +37,13 @@
           uutils-coreutils-noprefix
           uutils-diffutils
           uutils-findutils
+
+          eza
         ];
+        home.shellAliases = {
+          ls = "eza";
+          tree = "eza --tree";
+        };
         programs.zsh = {
           enable = true;
           autocd = true;
