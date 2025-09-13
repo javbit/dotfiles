@@ -120,6 +120,8 @@
             envrc
             # Movement
             avy
+            # AI
+            gptel
             # Completion
             corfu
             vertico
