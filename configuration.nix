@@ -33,12 +33,19 @@
           (import ./packages/ghostty-themes/overlay.nix)
           (import ./packages/emacs/overlay.nix)
         ];
+        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+          "claude-code"
+        ];
         home.packages = with pkgs; [
           uutils-coreutils-noprefix
           uutils-diffutils
           uutils-findutils
 
           eza
+
+          # AI coding agents.
+          claude-code
+          codex
         ];
         home.shellAliases = {
           ls = "eza";
