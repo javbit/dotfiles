@@ -172,6 +172,7 @@
     "font-sf-mono"
     "font-sf-pro"
     "ghostty"
+    "iina"
     "mullvad-browser"
     "obsidian"
     "orion"
