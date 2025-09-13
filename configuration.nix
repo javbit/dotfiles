@@ -43,7 +43,16 @@
           autocd = true;
           autosuggestion.enable = true;
           envExtra = ''
-            export TERMINFO=/Applications/Ghostty.app/Contents/Resources/terminfo
+            [[ -n "$EAT_SHELL_INTEGRATION" ]] && source "$EAT_SHELL_INTEGRATION"
+
+            case "$TERM" in
+              "xterm-ghostty")
+                export TERMINFO="/Applications/Ghostty.app/Contents/Resources/terminfo"
+                ;;
+              "eat*")
+                export TERMINFO=$(emacsclient -e 'eat-term-terminfo-directory' | tr -d \")
+                ;;
+            esac
           '';
         };
         programs.helix = {
@@ -110,6 +119,8 @@
             vertico
             orderless
             marginalia
+            # Utilities
+            eat
             # Programming
             ## Haskell
             haskell-ts-mode
