@@ -103,6 +103,8 @@
           extraPackages = epkgs: with epkgs; [
             exec-path-from-shell
             envrc
+            # Movement
+            avy
             # Completion
             corfu
             vertico
