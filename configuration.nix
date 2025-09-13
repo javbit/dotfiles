@@ -108,8 +108,6 @@
           package = null; # App managed by homebrew.
           enableZshIntegration = true;
           settings = {
-            font-family = "PragmataPro Mono";
-            macos-icon = "paper";
             config-file = "config.custom";
           };
         };
