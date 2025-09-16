@@ -43,6 +43,8 @@
 
           eza
 
+          racket-minimal        # Emacs has a hard time picking it up.
+
           # AI coding agents.
           claude-code
           codex
@@ -140,6 +142,10 @@
             ## OCaml
             tuareg
             ocaml-eglot
+            ## Scheme
+            geiser
+            geiser-racket
+            racket-mode
           ];
         };
         services.emacs' = {
