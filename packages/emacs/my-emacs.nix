@@ -1,15 +1,16 @@
 {
   emacs-git-pgtk,
 
-  fetchzip,
+  fetchFromGitHub,
   fetchpatch,
 }:
 
 let
-  emacs-icns = fetchzip {
-    url = "https://darrinhenein.com/downloads/emacs-icon-1.0.icns.zip";
-    hash = "sha256-7hZFw0D2088AZcymGkhoes9R4x1N66X6cbOzyv6GRtY=";
-    stripRoot = false;
+  emacs-icons = fetchFromGitHub {
+    owner = "jimeh";
+    repo = "emacs-liquid-glass-icons";
+    tag = "v1.0.1";
+    hash = "sha256-dapzrfbkVyzBtv8FLhNBsS6XOmxqMUbEhcgQEa7LzrM=";
   };
 
   patches.round-undecorated-frame = fetchpatch {
@@ -20,6 +21,7 @@ let
     url = "https://github.com/d12frosted/homebrew-emacs-plus/raw/refs/heads/master/patches/emacs-31/system-appearance.patch";
     hash = "sha256-4+2U+4+2tpuaThNJfZOjy1JPnneGcsoge9r+WpgNDko=";
   };
+  patches.liquid-glass-icon = ./liquid-glass-icon.patch;
 
   my-emacs = emacs-git-pgtk.override {
     withTreeSitter = true;
@@ -28,7 +30,7 @@ let
   my-emacs' = my-emacs.overrideAttrs (old: {
     patches = old.patches or [] ++ builtins.attrValues patches;
     postFixup = old.postFixup or "" + ''
-      cp ${emacs-icns}/emacs-icon-1.0.icns $out/Applications/Emacs.app/Contents/Resources/Emacs.icns
+      cp ${emacs-icons}/Resources/Assets.car $out/Applications/Emacs.app/Contents/Resources/
     '';
   });
 in
