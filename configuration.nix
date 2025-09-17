@@ -178,6 +178,7 @@
     "ghostty"
     "iina"
     "mullvad-browser"
+    "notion"
     "obsidian"
     "orion"
     "pareto-security"
