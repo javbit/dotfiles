@@ -73,6 +73,12 @@
         programs.starship = {
           enable = true;
           enableZshIntegration = true;
+          settings = {
+            nix_shell = {
+              symbol = "❄️ ";
+              heuristic = true;
+            };
+          };
         };
         programs.helix.enable = true;
         programs.git = {
