@@ -138,7 +138,7 @@
             eat
             # Programming
             ## Haskell
-            haskell-ts-mode
+            haskell-mode
             ## OCaml
             tuareg
             ocaml-eglot
