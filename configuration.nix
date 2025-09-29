@@ -193,6 +193,7 @@
     "signal"
     "tailscale"
     "tor-browser"
+    "utm"
   ];
   programs.direnv.enable = true;
   security.pam.services.sudo_local = {
