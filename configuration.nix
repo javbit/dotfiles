@@ -70,6 +70,10 @@
             esac
           '';
         };
+        programs.starship = {
+          enable = true;
+          enableZshIntegration = true;
+        };
         programs.helix = {
           enable = true;
           defaultEditor = true;
