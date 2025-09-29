@@ -74,10 +74,7 @@
           enable = true;
           enableZshIntegration = true;
         };
-        programs.helix = {
-          enable = true;
-          defaultEditor = true;
-        };
+        programs.helix.enable = true;
         programs.git = {
           enable = true;
           userName = "Javed Mohamed";
@@ -154,6 +151,7 @@
         };
         services.emacs' = {
           enable = true;
+          defaultEditor = true;
           executable = "Applications/Emacs.app/Contents/MacOS/Emacs";
         };
         programs.aria2.enable = true;
