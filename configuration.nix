@@ -191,7 +191,7 @@
     "orion"
     "pareto-security"
     "signal"
-    "tailscale"
+    "tailscale-app"
     "tor-browser"
     "utm"
   ];
