@@ -37,10 +37,6 @@
           "claude-code"
         ];
         home.packages = with pkgs; [
-          uutils-coreutils-noprefix
-          uutils-diffutils
-          uutils-findutils
-
           eza
 
           racket-minimal        # Emacs has a hard time picking it up.
