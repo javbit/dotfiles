@@ -37,6 +37,7 @@
           "claude-code"
         ];
         home.packages = with pkgs; [
+          awscli2
           eza
 
           racket-minimal        # Emacs has a hard time picking it up.
@@ -74,6 +75,7 @@
               symbol = "❄️ ";
               heuristic = true;
             };
+            aws.symbol = "☁️ ";
           };
         };
         programs.helix.enable = true;
