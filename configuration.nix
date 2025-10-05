@@ -182,6 +182,7 @@
   homebrew.enable = true;
   homebrew.casks = [
     "anki"
+    "audacity"
     "font-new-york"
     "font-sf-mono"
     "font-sf-pro"
