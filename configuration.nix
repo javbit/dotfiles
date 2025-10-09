@@ -130,10 +130,15 @@
         };
         programs.emacs = {
           enable = true;
-          package = pkgs.my-emacs-with-pkgs;
+          package = pkgs.my-emacs;
           extraPackages = epkgs: with epkgs; [
             exec-path-from-shell
             envrc
+            # Themes
+            standard-themes
+            doric-themes
+            modus-themes
+            ef-themes
             # Movement
             avy
             # AI
@@ -146,6 +151,11 @@
             # Utilities
             eat
             # Programming
+            ## Lisp
+            paredit
+            paren-face
+            ## Nix
+            nix-ts-mode
             ## Haskell
             haskell-mode
             ## OCaml
@@ -155,6 +165,9 @@
             geiser
             geiser-racket
             racket-mode
+            # Treesitter
+            treesit-grammars.with-all-grammars
+            tree-sitter-langs
           ];
         };
         services.emacs' = {
