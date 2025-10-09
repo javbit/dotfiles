@@ -32,6 +32,9 @@
           inputs.emacs-overlay.overlays.default
           (import ./packages/ghostty-themes/overlay.nix)
           (import ./packages/emacs/overlay.nix)
+          (final: prev: {
+            my-agda = final.agda.withPackages (p: [ p.standard-library ]);
+          })
         ];
         nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "claude-code"
@@ -40,6 +43,7 @@
           awscli2
           eza
 
+          my-agda               # Keep Emacs mode & package together.
           racket-minimal        # Emacs has a hard time picking it up.
 
           # AI coding agents.
@@ -156,6 +160,8 @@
             paren-face
             ## Nix
             nix-ts-mode
+            ## Agda
+            agda2-mode
             ## Haskell
             haskell-mode
             ## OCaml
