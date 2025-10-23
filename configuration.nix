@@ -213,6 +213,7 @@
     "obsidian"
     "orion"
     "pareto-security"
+    "racket"
     "signal"
     "tailscale-app"
     "tor-browser"
