@@ -103,6 +103,7 @@
             ".direnv"
           ];
         };
+        programs.mergiraf.enable = true;
         programs.jujutsu = {
           enable = true;
           settings = {
