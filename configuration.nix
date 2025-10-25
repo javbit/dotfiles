@@ -23,11 +23,12 @@
   system.primaryUser = config.users.users.javadmin.name;
   home-manager.backupFileExtension = "bak";
   home-manager.users = {
-    jav = { config, pkgs, ... }: {
+    jav = { config, osConfig, pkgs, ... }: {
       imports = [
         ./modules/home/services/emacs.nix
       ];
       config = {
+        # TODO: Inherit the OS's nixpkgs.
         nixpkgs.overlays = [
           inputs.emacs-overlay.overlays.default
           (import ./packages/ghostty-themes/overlay.nix)
@@ -45,16 +46,11 @@
           yt-dlp
 
           my-agda               # Keep Emacs mode & package together.
-          racket-minimal        # Emacs has a hard time picking it up.
 
           # AI coding agents.
           claude-code
           codex
         ];
-        home.shellAliases = {
-          ls = "eza";
-          tree = "eza --tree";
-        };
         programs.zsh = {
           enable = true;
           autocd = true;
@@ -71,6 +67,33 @@
                 ;;
             esac
           '';
+        };
+        programs.nushell = {
+          enable = true;
+          envFile.text =
+            let
+              systemPath = builtins.replaceStrings [ "$HOME" ] [ config.home.homeDirectory ] osConfig.environment.systemPath;
+              systemPath' = lib.splitString ":" systemPath;
+              nupath = "[ ${builtins.concatStringsSep ", " systemPath'} ]";
+            in ''
+              $env.PATH = ${nupath}
+              $env.config.buffer_editor = [ "emacsclient", "--alternate-editor=hx", "--create-frame" ]
+              $env.config.show_banner = false
+              $env.config = {
+                hooks: {
+                  pre_prompt: [{ ||
+                    if (which direnv | is-empty) {
+                      return
+                    }
+
+                    direnv export json | from json | default {} | load-env
+                    if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
+                      $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
+                    }
+                  }]
+                }
+              }
+            '';
         };
         programs.starship = {
           enable = true;
@@ -219,6 +242,9 @@
     "tailscale-app"
     "tor-browser"
     "utm"
+  ];
+  environment.systemPath = [
+    "/opt/homebrew/bin"
   ];
   programs.direnv.enable = true;
   security.pam.services.sudo_local = {
