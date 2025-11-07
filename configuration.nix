@@ -193,8 +193,6 @@
             tuareg
             ocaml-eglot
             ## Scheme
-            geiser
-            geiser-racket
             racket-mode
             # Treesitter
             treesit-grammars.with-all-grammars
