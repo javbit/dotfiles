@@ -189,6 +189,8 @@
             agda2-mode
             ## Haskell
             haskell-mode
+            ## Julia
+            julia-ts-mode
             ## OCaml
             tuareg
             ocaml-eglot
