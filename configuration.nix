@@ -114,11 +114,11 @@
         programs.helix.enable = true;
         programs.git = {
           enable = true;
-          userName = "Javed Mohamed";
-          userEmail = "jav@deadbeef.moe";
-          difftastic = {
-            enable = true;
-            enableAsDifftool = true;
+          settings = {
+            user = {
+              name = "Javed Mohamed";
+              email = "jav@deadbeef.moe";
+            };
           };
           ignores = [
             "*~"
@@ -126,6 +126,13 @@
             "result*"
             ".direnv"
           ];
+        };
+        programs.difftastic = {
+          enable = true;
+          git = {
+            enable = true;
+            diffToolMode = true;
+          };
         };
         programs.mergiraf.enable = true;
         programs.jujutsu = {
@@ -247,6 +254,7 @@
   environment.systemPath = [
     "/opt/homebrew/bin"
   ];
+  programs.fish.enable = true;
   programs.direnv.enable = true;
   security.pam.services.sudo_local = {
     enable = true;

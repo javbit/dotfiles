@@ -2,10 +2,10 @@
   description = "Jav's system configurations";
 
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2505";
-    nix-darwin.url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.2505";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2511";
+    nix-darwin.url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.2511";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
