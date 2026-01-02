@@ -15,6 +15,9 @@ rollback:
 build:
     darwin-rebuild build --flake {{flake}}
 
+update:
+    nix flake update
+
 upgrade:
     su -l javadmin -c 'sudo determinate-nixd upgrade && brew upgrade'
 
