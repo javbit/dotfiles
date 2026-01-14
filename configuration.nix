@@ -204,6 +204,8 @@
             ocaml-eglot
             ## Scheme
             racket-mode
+            ## Zig
+            zig-mode
             # Treesitter
             treesit-grammars.with-all-grammars
             tree-sitter-langs
