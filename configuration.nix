@@ -252,6 +252,7 @@
     "tailscale-app"
     "tor-browser"
     "utm"
+    "zotero"
   ];
   environment.systemPath = [
     "/opt/homebrew/bin"
