@@ -25,7 +25,7 @@
   home-manager.users = {
     jav = { config, osConfig, pkgs, ... }: {
       imports = [
-        ./modules/home/services/emacs.nix
+        ./profiles/home/emacs.nix
       ];
       config = {
         # TODO: Inherit the OS's nixpkgs.
@@ -164,57 +164,6 @@
           force = true;
           recursive = true;
           source = "${pkgs.ghostty-themes}/themes";
-        };
-        programs.emacs = {
-          enable = true;
-          package = pkgs.my-emacs;
-          extraPackages = epkgs: with epkgs; [
-            exec-path-from-shell
-            envrc
-            # Themes
-            standard-themes
-            doric-themes
-            modus-themes
-            ef-themes
-            # Movement
-            avy
-            # AI
-            gptel
-            # Completion
-            corfu
-            vertico
-            orderless
-            marginalia
-            # Utilities
-            eat
-            # Programming
-            ## Lisp
-            paredit
-            paren-face
-            ## Nix
-            nix-ts-mode
-            ## Agda
-            agda2-mode
-            ## Haskell
-            haskell-mode
-            ## Julia
-            julia-ts-mode
-            ## OCaml
-            tuareg
-            ocaml-eglot
-            ## Scheme
-            racket-mode
-            ## Zig
-            zig-mode
-            # Treesitter
-            treesit-grammars.with-all-grammars
-            tree-sitter-langs
-          ];
-        };
-        services.emacs' = {
-          enable = true;
-          defaultEditor = true;
-          executable = "Applications/Emacs.app/Contents/MacOS/Emacs";
         };
         programs.aria2.enable = true;
         home.stateVersion = "25.05";

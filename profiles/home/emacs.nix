@@ -1,0 +1,64 @@
+{
+  pkgs,
+  ...
+}:
+
+{
+  imports = [
+    ../../modules/home/services/emacs.nix
+  ];
+  config = {
+    programs.emacs = {
+      enable = true;
+      package = pkgs.my-emacs;
+      extraPackages = epkgs: with epkgs; [
+        # Environment management
+        exec-path-from-shell
+        envrc
+
+        # Themes
+        standard-themes
+        doric-themes
+        modus-themes
+        ef-themes
+
+        # Help
+        which-key
+
+        # LISP Programming
+        paredit
+        paren-face
+
+        # Nix
+        nix-ts-mode
+
+        # LSP
+        eglot
+
+        # Motion
+        avy
+
+        # LLMs
+        gptel
+
+        # Completion
+        corfu
+        vertico
+        orderless
+        marginalia
+
+        # Utilities
+        eat
+
+        # Treesitter
+        treesit-grammars.with-all-grammars
+        tree-sitter-langs
+      ];
+    };
+    services.emacs' = {
+      enable = true;
+      defaultEditor = true;
+      executable = "Applications/Emacs.app/Contents/MacOS/Emacs";
+    };
+  };
+}
