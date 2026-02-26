@@ -37,19 +37,12 @@
             my-agda = final.agda.withPackages (p: [ p.standard-library ]);
           })
         ];
-        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-          "claude-code"
-        ];
         home.packages = with pkgs; [
           awscli2
           eza
           yt-dlp
 
           my-agda               # Keep Emacs mode & package together.
-
-          # AI coding agents.
-          claude-code
-          codex
         ];
         programs.zsh = {
           enable = true;
