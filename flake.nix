@@ -16,15 +16,24 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nix-darwin, home-manager, emacs-overlay }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      emacs-overlay,
+    }:
     let
-      forAllSystems = f:
+      forAllSystems =
+        f:
         nixpkgs.lib.genAttrs [
           "aarch64-darwin"
         ] (system: f nixpkgs.legacyPackages.${system});
-    in {
+    in
+    {
       devShells = forAllSystems (pkgs: {
-        default = pkgs.callPackage ./shell.nix {};
+        default = pkgs.callPackage ./shell.nix { };
       });
 
       darwinConfigurations."Javs-MacBook-Air" = nix-darwin.lib.darwinSystem {
@@ -34,6 +43,5 @@
           home-manager.darwinModules.default
         ];
       };
-    }
-  ;
+    };
 }

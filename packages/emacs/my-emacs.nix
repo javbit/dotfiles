@@ -28,7 +28,7 @@ let
     withNativeCompilation = true;
   };
   my-emacs' = my-emacs.overrideAttrs (old: {
-    patches = old.patches or [] ++ builtins.attrValues patches;
+    patches = old.patches or [ ] ++ builtins.attrValues patches;
     postFixup = old.postFixup or "" + ''
       cp ${emacs-icons}/Resources/Assets.car $out/Applications/Emacs.app/Contents/Resources/
     '';

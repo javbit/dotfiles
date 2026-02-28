@@ -11,49 +11,50 @@
     programs.emacs = {
       enable = true;
       package = pkgs.my-emacs;
-      extraPackages = epkgs: with epkgs; [
-        # Environment management
-        exec-path-from-shell
-        envrc
+      extraPackages =
+        epkgs: with epkgs; [
+          # Environment management
+          exec-path-from-shell
+          envrc
 
-        # Themes
-        standard-themes
-        doric-themes
-        modus-themes
-        ef-themes
+          # Themes
+          standard-themes
+          doric-themes
+          modus-themes
+          ef-themes
 
-        # Help
-        which-key
+          # Help
+          which-key
 
-        # LISP Programming
-        paredit
-        paren-face
+          # LISP Programming
+          paredit
+          paren-face
 
-        # Nix
-        nix-ts-mode
+          # Nix
+          nix-ts-mode
 
-        # LSP
-        eglot
+          # LSP
+          eglot
 
-        # Motion
-        avy
+          # Motion
+          avy
 
-        # LLMs
-        gptel
+          # LLMs
+          gptel
 
-        # Completion
-        corfu
-        vertico
-        orderless
-        marginalia
+          # Completion
+          corfu
+          vertico
+          orderless
+          marginalia
 
-        # Utilities
-        eat
+          # Utilities
+          eat
 
-        # Treesitter
-        treesit-grammars.with-all-grammars
-        tree-sitter-langs
-      ];
+          # Treesitter
+          treesit-grammars.with-all-grammars
+          tree-sitter-langs
+        ];
     };
     services.emacs' = {
       enable = true;
