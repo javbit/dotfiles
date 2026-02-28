@@ -136,6 +136,7 @@
               email = "jav@deadbeef.moe";
             };
             ui.pager = ":builtin";
+            ui.editor = "hx";
             ui.diff-formatter = [
               (lib.meta.getExe config.programs.git.difftastic.package)
               "--color=always"
