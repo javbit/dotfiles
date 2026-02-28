@@ -135,6 +135,9 @@
               name = "Javed Mohamed";
               email = "jav@deadbeef.moe";
             };
+            aliases = {
+              tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+            };
             ui.pager = ":builtin";
             ui.editor = "hx";
             ui.diff-formatter = [
