@@ -46,7 +46,7 @@
         ui.pager = ":builtin";
         ui.editor = "hx";
         ui.diff-formatter = [
-          (lib.meta.getExe config.programs.git.difftastic.package)
+          (lib.meta.getExe config.programs.difftastic.package)
           "--color=always"
           "$left"
           "$right"
