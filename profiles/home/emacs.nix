@@ -33,6 +33,10 @@
           # Nix
           nix-ts-mode
 
+          # Haskell
+          haskell-mode
+          haskell-ts-mode
+
           # LSP
           eglot
 
