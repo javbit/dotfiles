@@ -32,6 +32,21 @@
         ] (system: f nixpkgs.legacyPackages.${system});
     in
     {
+      overlays = {
+        ghostty-themes = import ./packages/ghostty-themes/overlay.nix;
+        zmx = import ./packages/zmx/overlay.nix;
+        emacs = nixpkgs.lib.composeManyExtensions [
+          emacs-overlay.overlays.default
+          (import ./packages/emacs/overlay.nix)
+        ];
+      };
+
+      packages = forAllSystems (pkgs: {
+        ghostty-themes = pkgs.callPackage ./packages/ghostty-themes/default.nix { };
+        zmx = pkgs.callPackage ./packages/zmx/default.nix { };
+        my-emacs = (pkgs.extend emacs-overlay.overlays.default).callPackage ./packages/emacs/my-emacs.nix { };
+      });
+
       devShells = forAllSystems (pkgs: {
         default = pkgs.callPackage ./shell.nix { };
       });

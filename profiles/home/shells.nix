@@ -69,6 +69,12 @@
           heuristic = true;
         };
         aws.symbol = "☁️ ";
+        env_var.ZMX_SESSION = {
+          symbol = " ";
+          format = "in [$symbol$env_value]($style) ";
+          description = "zmx session name";
+          style = "bold purple";
+        };
       };
     };
   };

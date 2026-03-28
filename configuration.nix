@@ -47,6 +47,7 @@
             inputs.emacs-overlay.overlays.default
             (import ./packages/ghostty-themes/overlay.nix)
             (import ./packages/emacs/overlay.nix)
+            (import ./packages/zmx/overlay.nix)
             (final: prev: {
               my-agda = final.agda.withPackages (p: [ p.standard-library ]);
             })
