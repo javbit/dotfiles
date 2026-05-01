@@ -28,6 +28,7 @@
       "pareto-security"
 
       # Development
+      "kicad"
       "racket"
       "utm"
 
