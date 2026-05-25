@@ -25,7 +25,11 @@
         diffToolMode = true;
       };
     };
-    programs.mergiraf.enable = true;
+    programs.mergiraf = {
+      enable = true;
+      enableGitIntegration = true;
+      enableJujutsuIntegration = true;
+    };
     programs.jujutsu = {
       enable = true;
       settings = {
