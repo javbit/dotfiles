@@ -37,6 +37,10 @@
           haskell-mode
           haskell-ts-mode
 
+          # Prolog
+          prolog-mode # Stefan Bruda's prolog.el
+          ediprolog
+
           # LSP
           eglot
 

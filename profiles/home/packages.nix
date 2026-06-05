@@ -5,6 +5,7 @@
     home.packages = with pkgs; [
       awscli2
       eza
+      swi-prolog
       yt-dlp
       zmx
 
