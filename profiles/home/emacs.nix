@@ -58,6 +58,7 @@
 
           # Utilities
           eat
+          tempel
 
           # Treesitter
           treesit-grammars.with-all-grammars
