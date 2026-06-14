@@ -59,6 +59,7 @@
           # Utilities
           eat
           tempel
+          olivetti
 
           # Treesitter
           treesit-grammars.with-all-grammars
