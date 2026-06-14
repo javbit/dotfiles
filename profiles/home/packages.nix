@@ -6,6 +6,7 @@
       awscli2
       eza
       swi-prolog
+      scryer-prolog
       yt-dlp
       zmx
 
