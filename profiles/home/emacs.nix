@@ -17,6 +17,9 @@
           exec-path-from-shell
           envrc
 
+          # VCS
+          vc-jj
+
           # Themes
           standard-themes
           doric-themes
