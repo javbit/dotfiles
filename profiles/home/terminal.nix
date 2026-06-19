@@ -4,10 +4,12 @@
   config = {
     programs.ghostty = {
       enable = true;
-      package = null; # App managed by homebrew.
+      # On darwin the app is managed by homebrew; on Linux let home-manager
+      # install and manage it (including the systemd user service).
+      package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
       enableZshIntegration = true;
       settings = {
-        config-file = "config.custom";
+        config-file = "?config.custom";
       };
     };
     xdg.configFile."ghostty/themes" = {

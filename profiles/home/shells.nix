@@ -16,9 +16,11 @@
         [[ -n "$EAT_SHELL_INTEGRATION" ]] && source "$EAT_SHELL_INTEGRATION"
 
         case "$TERM" in
+        ${lib.optionalString pkgs.stdenv.isDarwin ''
           "xterm-ghostty")
             export TERMINFO="/Applications/Ghostty.app/Contents/Resources/terminfo"
             ;;
+        ''}
           "eat*")
             export TERMINFO=$(emacsclient -e 'eat-term-terminfo-directory' | tr -d \")
             ;;
@@ -30,15 +32,23 @@
       enable = true;
       envFile.text =
         let
-          systemPath =
-            builtins.replaceStrings [ "$HOME" ] [ config.home.homeDirectory ]
-              osConfig.environment.systemPath;
-          systemPath' = lib.splitString ":" systemPath;
-          nupath = "[ ${builtins.concatStringsSep ", " systemPath'} ]";
+          # nix-darwin exposes the system PATH as a single string; NixOS builds
+          # it from profiles instead, so only seed $env.PATH where available.
+          # On NixOS nushell inherits PATH from the login/systemd session.
+          pathLine =
+            lib.optionalString (osConfig.environment ? systemPath) (
+              let
+                systemPath =
+                  builtins.replaceStrings [ "$HOME" ] [ config.home.homeDirectory ]
+                    osConfig.environment.systemPath;
+                systemPath' = lib.splitString ":" systemPath;
+                nupath = "[ ${builtins.concatStringsSep ", " systemPath'} ]";
+              in
+              "$env.PATH = ${nupath}\n"
+            );
         in
         ''
-          $env.PATH = ${nupath}
-          $env.config.buffer_editor = [ "emacsclient", "--alternate-editor=hx", "--create-frame" ]
+          ${pathLine}$env.config.buffer_editor = [ "emacsclient", "--alternate-editor=hx", "--create-frame" ]
           $env.config.show_banner = false
           $env.config = {
             hooks: {

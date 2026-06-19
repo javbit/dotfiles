@@ -65,7 +65,9 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/framework/configuration.nix
+          ./hosts/framework/home.nix
           nixos-hardware.nixosModules.framework-12th-gen-intel
+          home-manager.nixosModules.default
         ];
       };
     };

@@ -98,12 +98,6 @@
     isNormalUser = true;
     description = "Javed Mohamed";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      tor-browser
-      ghostty
-      fortune
-      cowsay
-    ];
   };
 
   # Install fonts.
@@ -158,7 +152,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    eza
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
