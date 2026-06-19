@@ -17,9 +17,6 @@
   boot.initrd.luks.devices."luks-122035a2-80fa-4012-ab04-a1059288644b".device = "/dev/disk/by-uuid/122035a2-80fa-4012-ab04-a1059288644b";
   networking.hostName = "framework"; # Define your hostname.
 
-  # Nix.
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";

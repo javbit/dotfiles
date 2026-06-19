@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2605";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     nix-darwin.url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.2605";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
@@ -22,6 +23,7 @@
       self,
       nixpkgs,
       nixos-hardware,
+      determinate,
       nix-darwin,
       home-manager,
       emacs-overlay,
@@ -67,6 +69,7 @@
           ./hosts/framework/configuration.nix
           ./hosts/framework/home.nix
           nixos-hardware.nixosModules.framework-12th-gen-intel
+          determinate.nixosModules.default
           home-manager.nixosModules.default
         ];
       };
