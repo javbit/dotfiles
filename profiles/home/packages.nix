@@ -10,6 +10,8 @@
       yt-dlp
       zmx
 
+      nixos-rebuild
+
       my-agda # Keep Emacs mode & package together.
     ];
   };
