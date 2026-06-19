@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2605";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-darwin.url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.2605";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
@@ -20,6 +21,7 @@
     inputs@{
       self,
       nixpkgs,
+      nixos-hardware,
       nix-darwin,
       home-manager,
       emacs-overlay,
@@ -56,6 +58,14 @@
         modules = [
           ./configuration.nix
           home-manager.darwinModules.default
+        ];
+      };
+
+      nixosConfigurations.framework = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/framework/configuration.nix
+          nixos-hardware.nixosModules.framework-12th-gen-intel
         ];
       };
     };
