@@ -5,6 +5,8 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2605";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.2605";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
@@ -24,6 +26,7 @@
       nixpkgs,
       nixos-hardware,
       determinate,
+      nix-minecraft,
       nix-darwin,
       home-manager,
       emacs-overlay,
@@ -68,9 +71,11 @@
         modules = [
           ./hosts/framework/configuration.nix
           ./hosts/framework/home.nix
+          ./hosts/framework/minecraft.nix
           nixos-hardware.nixosModules.framework-12th-gen-intel
           determinate.nixosModules.default
           home-manager.nixosModules.default
+          nix-minecraft.nixosModules.minecraft-servers
         ];
       };
     };
