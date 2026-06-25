@@ -67,6 +67,7 @@
           eat
           tempel
           olivetti
+          ultra-scroll
 
           # Treesitter
           treesit-grammars.with-all-grammars
