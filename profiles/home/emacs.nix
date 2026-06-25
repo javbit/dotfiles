@@ -40,6 +40,10 @@
           haskell-mode
           haskell-ts-mode
 
+          # Clojure
+          clojure-ts-mode
+          cider
+
           # Prolog
           prolog-mode # Stefan Bruda's prolog.el
           ediprolog
