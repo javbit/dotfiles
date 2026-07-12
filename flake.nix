@@ -72,6 +72,7 @@
           ./hosts/framework/configuration.nix
           ./hosts/framework/home.nix
           ./hosts/framework/minecraft.nix
+          ./hosts/framework/samba.nix
           nixos-hardware.nixosModules.framework-12th-gen-intel
           determinate.nixosModules.default
           home-manager.nixosModules.default
