@@ -3,6 +3,7 @@ alias r := rollback
 alias b := build
 alias u := upgrade
 alias c := clean
+alias d := deploy
 
 flake := `jj workspace root`
 
@@ -14,6 +15,9 @@ rollback:
 
 build:
     darwin-rebuild build --flake {{flake}}
+
+deploy target:
+    nixos-rebuild switch --build-host root@{{target}} --target-host root@{{target}} --flake {{flake}}#{{target}} --no-reexec --use-substitutes
 
 update:
     nix flake update
