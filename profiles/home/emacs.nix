@@ -56,6 +56,7 @@
 
           # LLMs
           gptel
+          pi-coding-agent
 
           # Completion
           corfu
