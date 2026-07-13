@@ -49,6 +49,20 @@
         "create mask" = "0644";
         "directory mask" = "0755";
       };
+
+      # Transmission downloads from the seedbox container (see seedbox.nix:
+      # dir is setgid 70:torrents and transmission writes group-writable, so
+      # jav gets access via the torrents group; force group keeps jav-created
+      # files consistent with that).
+      torrents = {
+        path = "/srv/torrents";
+        browseable = "yes";
+        "read only" = "no";
+        "valid users" = "jav";
+        "force group" = "torrents";
+        "create mask" = "0664";
+        "directory mask" = "2775";
+      };
     };
   };
 
