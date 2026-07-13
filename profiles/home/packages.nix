@@ -4,7 +4,6 @@
   config = {
     home.packages = with pkgs; [
       awscli2
-      eza
       swi-prolog
       scryer-prolog
       zmx

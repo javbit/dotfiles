@@ -8,6 +8,9 @@
 
 {
   config = {
+    home.packages = with pkgs; [
+      eza
+    ];
     programs.zsh = {
       enable = true;
       autocd = true;

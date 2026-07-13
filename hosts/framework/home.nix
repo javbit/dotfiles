@@ -2,6 +2,14 @@
 
 {
   home-manager.backupFileExtension = "bak";
+  home-manager.users.root =
+    _:
+    {
+      imports = [
+        ../../profiles/home/shells.nix
+      ];
+      home.stateVersion = "25.05";
+    };
   home-manager.users.jav =
     { pkgs, ... }:
     {
