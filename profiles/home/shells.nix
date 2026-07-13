@@ -28,6 +28,22 @@
       '';
     };
     programs.fish.enable = true;
+    programs.bash = {
+      enable = true;
+      # Trampoline: bash stays the login shell so anything non-interactive
+      # (scp/rsync, `ssh host cmd`, provisioning) keeps a POSIX shell, but
+      # top-level interactive sessions exec into fish. Guards: skip when the
+      # parent is already fish (no loops), when running `bash -c` (execution
+      # string), and in nested shells (SHLVL) so a deliberate `bash` from
+      # fish still gives bash. home-manager places initExtra after its
+      # interactive-shell check, so login `ssh host cmd` never reaches this.
+      initExtra = ''
+        if [[ $(ps -p $PPID -o comm=) != *fish* && -z "''${BASH_EXECUTION_STRING}" && "''${SHLVL}" == 1 ]]; then
+          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+          exec ${lib.getExe config.programs.fish.package} $LOGIN_OPTION
+        fi
+      '';
+    };
     programs.nushell = {
       enable = true;
       envFile.text =
