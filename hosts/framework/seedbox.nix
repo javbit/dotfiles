@@ -110,6 +110,27 @@ in
         unitConfig.StartLimitIntervalSec = 0;
       };
 
+      # Publish the web UI as https://seedbox.nilgiri-hue.ts.net: tailscaled
+      # terminates TLS (auto-provisioned LE cert) and proxies to the RPC
+      # port. Serve traffic is handled inside tailscaled's netstack, so no
+      # tailscale0 firewall port is needed, and the killswitch doesn't
+      # apply (replies leave via the tun writer, not the output hook).
+      # `serve --bg` persists in tailscaled state; this just (re)applies
+      # it. Same boot race as tailscaled-set: serve needs the netmap
+      # (HTTPS cert capability), so retry until it lands.
+      systemd.services.tailscale-serve = {
+        wantedBy = [ "multi-user.target" ];
+        requires = [ "tailscaled.service" ];
+        after = [ "tailscaled.service" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${lib.meta.getExe pkgs.tailscale} serve --bg http://127.0.0.1:${toString rpcPort}";
+          Restart = "on-failure";
+          RestartSec = "5s";
+        };
+        unitConfig.StartLimitIntervalSec = 0;
+      };
+
       # Web UI reachable only over the container's own tailnet address.
       networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ rpcPort ];
 
