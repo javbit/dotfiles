@@ -27,3 +27,7 @@ upgrade:
 
 clean:
     rm result
+
+gc:
+    nix-collect-garbage --delete-older-than 14d
+    su -l javadmin -c 'sudo nix-collect-garbage --delete-older-than 14d && sudo nix store optimise'
