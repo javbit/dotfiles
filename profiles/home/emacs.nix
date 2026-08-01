@@ -33,6 +33,9 @@
           paredit
           paren-face
 
+          # Racket
+          racket-mode
+
           # Nix
           nix-ts-mode
 
