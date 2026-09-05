@@ -2,32 +2,53 @@ alias s := switch
 alias r := rollback
 alias b := build
 alias u := upgrade
-alias c := clean
 alias d := deploy
+alias f := fonts
 
-flake := `jj workspace root`
+# Literal on purpose: the sudoers rule matches this exact path, and jav
+# cannot run `jj workspace root` inside a repo it does not own.
+flake := "/Users/javadmin/Sources/dotfiles"
+host := "Javs-MacBook-Air"
 
 switch:
-    su -l javadmin -c "sudo darwin-rebuild switch --flake {{flake}}"
+    sudo darwin-rebuild switch --flake {{flake}}
 
 rollback:
-    su -l javadmin -c "sudo darwin-rebuild switch --rollback"
+    sudo darwin-rebuild switch --rollback
 
+# Dry build as jav. No result link: the repo directory is not writable by jav.
 build:
-    darwin-rebuild build --flake {{flake}}
+    nix build {{flake}}#darwinConfigurations.{{host}}.system --no-link --print-out-paths
 
 deploy target:
     nixos-rebuild switch --build-host root@{{target}} --target-host root@{{target}} --flake {{flake}}#{{target}} --no-reexec --use-substitutes
 
+# Writes flake.lock, so it must run as the repo owner.
 update:
+    @[ "$USER" = javadmin ] || { echo "update writes flake.lock; run as javadmin" >&2; exit 1; }
     nix flake update
 
 upgrade:
-    su -l javadmin -c 'sudo determinate-nixd upgrade && brew upgrade'
-
-clean:
-    rm result
+    sudo determinate-nixd upgrade
+    brew upgrade
 
 gc:
     nix-collect-garbage --delete-older-than 14d
-    su -l javadmin -c 'sudo nix-collect-garbage --delete-older-than 14d && sudo nix store optimise'
+    sudo nix-collect-garbage --delete-older-than 14d
+    sudo nix store optimise
+
+# Unpack Apple's SF Pro, SF Mono and New York .pkg installers (which need root) into ~/Library/Fonts
+fonts:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    tmp=$(mktemp -d)
+    trap 'rm -rf "$tmp"' EXIT
+    mkdir -p ~/Library/Fonts
+    for name in SF-Pro SF-Mono NY; do
+        curl -fsSL -o "$tmp/$name.dmg" "https://devimages-cdn.apple.com/design/resources/download/$name.dmg"
+        mnt=$(hdiutil attach -nobrowse -readonly -mountrandom "$tmp" "$tmp/$name.dmg" | awk '/\/Volumes|\/private/ {print $NF}' | tail -1)
+        pkgutil --expand-full "$mnt"/*.pkg "$tmp/$name"
+        hdiutil detach "$mnt" -quiet
+        find "$tmp/$name" -type f \( -name '*.otf' -o -name '*.ttf' \) -exec cp -f {} ~/Library/Fonts/ \;
+    done
+    echo "installed: $(ls ~/Library/Fonts | grep -cE '^(SF-|NewYork)')" fonts
