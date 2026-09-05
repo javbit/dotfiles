@@ -23,7 +23,7 @@
       home = "/Users/javadmin";
     };
   };
-  system.primaryUser = config.users.users.javadmin.name;
+  system.primaryUser = config.users.users.jav.name;
   home-manager.backupFileExtension = "bak";
   home-manager.users = {
     jav =
@@ -63,7 +63,6 @@
           autocd = true;
           autosuggestion.enable = true;
           envExtra = ''
-            eval $(/opt/homebrew/bin/brew shellenv)
             export TERMINFO=/Applications/Ghostty.app/Contents/Resources/terminfo
           '';
         };
