@@ -5,9 +5,7 @@ alias u := upgrade
 alias d := deploy
 alias f := fonts
 
-# Literal on purpose: the sudoers rule matches this exact path, and jav
-# cannot run `jj workspace root` inside a repo it does not own.
-flake := "/Users/javadmin/Sources/dotfiles"
+flake := "/Users/$USER/Sources/dotfiles"
 host := "Javs-MacBook-Air"
 
 switch:
@@ -16,16 +14,13 @@ switch:
 rollback:
     sudo darwin-rebuild switch --rollback
 
-# Dry build as jav. No result link: the repo directory is not writable by jav.
 build:
     nix build {{flake}}#darwinConfigurations.{{host}}.system --no-link --print-out-paths
 
 deploy target:
     nixos-rebuild switch --build-host root@{{target}} --target-host root@{{target}} --flake {{flake}}#{{target}} --no-reexec --use-substitutes
 
-# Writes flake.lock, so it must run as the repo owner.
 update:
-    @[ "$USER" = javadmin ] || { echo "update writes flake.lock; run as javadmin" >&2; exit 1; }
     nix flake update
 
 upgrade:

@@ -29,7 +29,6 @@ let
     url = patchUrl "system-appearance";
     hash = "sha256-4+2U+4+2tpuaThNJfZOjy1JPnneGcsoge9r+WpgNDko=";
   };
-  patches.liquid-glass-icon = ./liquid-glass-icon.patch;
 
   my-emacs = emacs-git-pgtk.override {
     withTreeSitter = true;
@@ -37,6 +36,17 @@ let
   };
   my-emacs' = my-emacs.overrideAttrs (old: {
     patches = old.patches or [ ] ++ builtins.attrValues patches;
+    # Point the app bundle at the liquid-glass icon set in Assets.car
+    # (installed below).  A substitution rather than a patch so upstream
+    # edits elsewhere in Info.plist.in don't break the build; --replace-fail
+    # still catches it if this exact line ever changes.
+    postPatch = old.postPatch or "" + ''
+      substituteInPlace nextstep/templates/Info.plist.in \
+        --replace-fail '<string>Emacs.icns</string>' \
+                       '<string>Emacs.icns</string>
+	<key>CFBundleIconName</key>
+	<string>EmacsLG3</string>'
+    '';
     postFixup = old.postFixup or "" + ''
       cp ${emacs-icons}/Resources/Assets.car $out/Applications/Emacs.app/Contents/Resources/
     '';
