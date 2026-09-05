@@ -58,6 +58,8 @@
     javadmin =
       { ... }:
       {
+        # Enough to make the monthly config edit tolerable: jj, git, helix.
+        imports = [ ./profiles/home/vcs.nix ];
         programs.zsh = {
           enable = true;
           autocd = true;
