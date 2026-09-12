@@ -1,5 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+let
+  cursor = config.home.pointerCursor;
+in
 {
   config = {
     home.packages = with pkgs; [
@@ -105,6 +113,11 @@
               offset x=0 y=5
               color "#0007"
           }
+      }
+
+      cursor {
+          xcursor-theme "${cursor.name}"
+          xcursor-size ${toString cursor.size}
       }
 
       prefer-no-csd

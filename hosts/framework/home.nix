@@ -20,6 +20,7 @@
         ../../profiles/home/terminal.nix
         ../../profiles/home/packages.nix
         ../../profiles/home/niri.nix
+        ../../profiles/home/cursor.nix
       ];
       config = {
         home.packages = [ pkgs.tor-browser ];
