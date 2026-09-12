@@ -36,6 +36,30 @@ in
   # Keep NetworkManager's hands off container veths.
   networking.networkmanager.unmanaged = [ "interface-name:ve-*" ];
 
+  # The host itself may be on a Tailscale exit node (toggled from the
+  # desktop). tailscaled then puts `default dev tailscale0` in its policy
+  # table 52, which `ip rule 5270` consults for every *unmarked* packet
+  # before main. Without this table that breaks the container two ways
+  # (2026-09-11): the strict reverse-path filter drops its packets (the
+  # fib lookup for 10.100.0.2 now answers tailscale0, not ve-seedbox), and
+  # replies to 10.100.0.2 are routed into the tunnel instead of down the
+  # veth. Stamping the container's flows with tailscaled's own bypass mark
+  # (0x80000/0xff0000) sends them through `ip rule 5210: fwmark 0x80000
+  # lookup main` in both directions, so the container always egresses via
+  # the raw uplink, which is what the forward rules above assume. The
+  # conntrack mark carries the decision to reply packets; it is restored
+  # before the rpfilter chain (mangle + 10) evaluates them.
+  networking.nftables.tables.seedbox-egress = {
+    family = "inet";
+    content = ''
+      chain prerouting {
+        type filter hook prerouting priority mangle - 1; policy accept;
+        iifname "ve-seedbox" meta mark set meta mark & 0xff00ffff | 0x00080000 ct mark set meta mark comment "seedbox: bypass host tailscale policy routing"
+        iifname != "ve-seedbox" ct original ip saddr ${localAddress} ct mark & 0x00ff0000 == 0x00080000 meta mark set ct mark comment "seedbox: restore bypass mark on replies"
+      }
+    '';
+  };
+
   # Named group matching the container's transmission gid so jav can be a
   # member; setgid dir keeps everything group-owned.
   users.groups.torrents.gid = transmissionId;
@@ -70,6 +94,16 @@ in
       # bootstrap DNS-over-HTTPS against DERP IPs.
       networking.useHostResolvConf = lib.mkForce false;
       services.resolved.enable = true;
+      # ...but the resolver must fail *fast* pre-auth. resolved's compiled-in
+      # fallback servers (1.1.1.1, 8.8.8.8) are unmarked traffic that the
+      # kill switch silently drops, so each lookup hung for the full timeout
+      # and tailscaled's 10 s register deadline expired before it ever fell
+      # back to bootstrap DNS (2026-09-11 post-reboot outage; earlier boots
+      # only won the race because the first lookup ran before the default
+      # route existed and failed instantly). With no fallback, resolved
+      # returns SERVFAIL immediately and tailscaled bootstraps. Once logged
+      # in, tailscaled installs the exit node's resolvers via the tunnel.
+      services.resolved.settings.Resolve.FallbackDNS = [ ];
 
       services.tailscale = {
         enable = true;
