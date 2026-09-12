@@ -11,6 +11,7 @@
       # Desktop sessions; each WM/DE gets its own profile.
       ../../profiles/nixos/gnome.nix
       ../../profiles/nixos/niri.nix
+      ../../profiles/nixos/sdr.nix
     ];
 
   # Bootloader.
@@ -84,7 +85,7 @@
   users.users.jav = {
     isNormalUser = true;
     description = "Javed Mohamed";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" ];
   };
 
   # Install fonts.

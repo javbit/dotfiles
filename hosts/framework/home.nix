@@ -21,6 +21,7 @@
         ../../profiles/home/packages.nix
         ../../profiles/home/niri.nix
         ../../profiles/home/cursor.nix
+        ../../profiles/home/sdr.nix
       ];
       config = {
         home.packages = [ pkgs.tor-browser ];
