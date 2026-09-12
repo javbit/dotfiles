@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       # Desktop sessions; each WM/DE gets its own profile.
       ../../profiles/nixos/gnome.nix
+      ../../profiles/nixos/niri.nix
     ];
 
   # Bootloader.
