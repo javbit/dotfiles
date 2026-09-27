@@ -49,7 +49,6 @@
             (import ./packages/emacs/overlay.nix)
             (import ./packages/zmx/overlay.nix)
             (final: prev: {
-              my-agda = final.agda.withPackages (p: [ p.standard-library ]);
               # test_make_tmpdir writes to /tmp, which the Darwin sandbox denies.
               nixos-rebuild-ng = prev.nixos-rebuild-ng.overrideAttrs (old: {
                 disabledTests = (old.disabledTests or [ ]) ++ [ "test_make_tmpdir" ];

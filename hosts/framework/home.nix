@@ -30,9 +30,6 @@
           (import ../../packages/ghostty-themes/overlay.nix)
           (import ../../packages/emacs/overlay-linux.nix)
           (import ../../packages/zmx/overlay.nix)
-          (final: prev: {
-            my-agda = final.agda.withPackages (p: [ p.standard-library ]);
-          })
         ];
         home.stateVersion = "25.05";
       };
