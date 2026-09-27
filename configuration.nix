@@ -25,6 +25,7 @@
   };
   system.primaryUser = config.users.users.jav.name;
   home-manager.backupFileExtension = "bak";
+  home-manager.extraSpecialArgs = { inherit inputs; };
   home-manager.users = {
     jav =
       {

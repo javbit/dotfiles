@@ -176,6 +176,22 @@
         "type": "github"
       }
     },
+    "minimal-emacs-d": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789746536,
+        "narHash": "sha256-+7UNjhBdJpZc7D+o3jC1rsHFKXNI+ExgT/e5zyVgR38=",
+        "owner": "jamescherti",
+        "repo": "minimal-emacs.d",
+        "rev": "fa5cd9d05dc38ea978889c391f751b29a7ab2c80",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jamescherti",
+        "repo": "minimal-emacs.d",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -348,6 +364,7 @@
         "determinate": "determinate",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
+        "minimal-emacs-d": "minimal-emacs-d",
         "nix-darwin": "nix-darwin",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",

@@ -18,6 +18,10 @@
         nixpkgs-stable.follows = "nixpkgs";
       };
     };
+    minimal-emacs-d = {
+      url = "github:jamescherti/minimal-emacs.d";
+      flake = false;
+    };
   };
 
   outputs =
@@ -30,6 +34,7 @@
       nix-darwin,
       home-manager,
       emacs-overlay,
+      minimal-emacs-d,
     }:
     let
       forAllSystems =

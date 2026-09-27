@@ -2,6 +2,7 @@
 
 {
   home-manager.backupFileExtension = "bak";
+  home-manager.extraSpecialArgs = { inherit inputs; };
   home-manager.users.root =
     _:
     {
