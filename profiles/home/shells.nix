@@ -16,17 +16,12 @@
       autocd = true;
       autosuggestion.enable = true;
       envExtra = ''
-        [[ -n "$EAT_SHELL_INTEGRATION" ]] && source "$EAT_SHELL_INTEGRATION"
-
         case "$TERM" in
         ${lib.optionalString pkgs.stdenv.isDarwin ''
           "xterm-ghostty")
             export TERMINFO="/Applications/Ghostty.app/Contents/Resources/terminfo"
             ;;
         ''}
-          "eat*")
-            export TERMINFO=$(emacsclient -e 'eat-term-terminfo-directory' | tr -d \")
-            ;;
         esac
       '';
     };
