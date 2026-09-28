@@ -7,6 +7,7 @@
 {
   imports = [
     ../../modules/home/emacs/minimal-emacs.nix
+    ../../modules/home/emacs/darwin-quirks.nix
     ../../modules/home/services/emacs.nix
   ];
   config = {
