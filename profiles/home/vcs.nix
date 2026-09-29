@@ -18,6 +18,7 @@
         ".direnv"
       ];
     };
+    programs.gh.enable = true;
     programs.difftastic = {
       enable = true;
       git = {
