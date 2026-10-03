@@ -26,6 +26,7 @@
         diffToolMode = true;
       };
     };
+    programs.emacs.extraPackages = epkgs: [ epkgs.difftastic ];
     programs.mergiraf = {
       enable = true;
       enableGitIntegration = true;
