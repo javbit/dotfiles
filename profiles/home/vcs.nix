@@ -2,7 +2,6 @@
 
 {
   config = {
-    programs.helix.enable = true;
     programs.git = {
       enable = true;
       settings = {
@@ -70,7 +69,7 @@
           ];
         };
         ui.pager = ":builtin";
-        ui.editor = "hx";
+        ui.editor = "emacsclient";
         ui.diff-formatter = [
           (lib.meta.getExe config.programs.difftastic.package)
           "--color=always"
