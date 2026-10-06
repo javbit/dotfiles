@@ -36,7 +36,8 @@
       }:
       {
         imports = [
-          ./profiles/home/emacs.nix
+          ./modules/home/emacs
+
           ./profiles/home/shells.nix
           ./profiles/home/vcs.nix
           ./profiles/home/terminal.nix

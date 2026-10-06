@@ -6,10 +6,10 @@
 
 {
   imports = [
-    ../../modules/home/emacs/minimal-emacs.nix
-    ../../modules/home/emacs/darwin-quirks.nix
-    ../../modules/home/emacs/nix.nix
-    ../../modules/home/services/emacs.nix
+    ./darwin-quirks.nix
+    ./minimal-emacs.nix
+    ./nix.nix
+    ./service.nix
   ];
   config = {
     programs.minimal-emacs = {
