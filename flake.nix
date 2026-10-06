@@ -59,6 +59,7 @@
           programs.minimal-emacs.source = minimal-emacs-d;
         };
         terminal = ./profiles/home/terminal.nix;
+        vcs = ./modules/home/vcs;
       };
 
       packages = forAllSystems (pkgs: {
