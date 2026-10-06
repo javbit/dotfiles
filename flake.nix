@@ -58,6 +58,7 @@
           imports = [ ./modules/home/emacs ];
           programs.minimal-emacs.source = minimal-emacs-d;
         };
+        terminal = ./profiles/home/terminal.nix;
       };
 
       packages = forAllSystems (pkgs: {

@@ -18,7 +18,7 @@
         inputs.self.homeModules.emacs
         ../../profiles/home/shells.nix
         ../../profiles/home/vcs.nix
-        ../../profiles/home/terminal.nix
+        inputs.self.homeModules.terminal
         ../../profiles/home/packages.nix
         ../../profiles/home/niri.nix
         ../../profiles/home/cursor.nix

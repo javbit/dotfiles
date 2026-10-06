@@ -40,7 +40,7 @@
 
           ./profiles/home/shells.nix
           ./profiles/home/vcs.nix
-          ./profiles/home/terminal.nix
+          inputs.self.homeModules.terminal
           ./profiles/home/packages.nix
         ];
         config = {
