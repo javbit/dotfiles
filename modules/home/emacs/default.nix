@@ -7,6 +7,7 @@
 {
   imports = [
     ./darwin-quirks.nix
+    ./ghostel.nix
     ./lisp.nix
     ./minimal-emacs.nix
     ./nix.nix
