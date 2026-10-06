@@ -53,6 +53,13 @@
         ];
       };
 
+      homeModules = {
+        emacs = {
+          imports = [ ./modules/home/emacs ];
+          programs.minimal-emacs.source = minimal-emacs-d;
+        };
+      };
+
       packages = forAllSystems (pkgs: {
         ghostty-themes = pkgs.callPackage ./packages/ghostty-themes/default.nix { };
         zmx = pkgs.callPackage ./packages/zmx/default.nix { };

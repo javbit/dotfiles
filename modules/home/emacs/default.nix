@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   ...
 }:
@@ -14,10 +13,7 @@
     ./service.nix
   ];
   config = {
-    programs.minimal-emacs = {
-      enable = true;
-      source = inputs.minimal-emacs-d;
-    };
+    programs.minimal-emacs.enable = true;
     programs.emacs = {
       enable = true;
       package = pkgs.my-emacs;
