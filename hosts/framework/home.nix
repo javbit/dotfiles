@@ -29,7 +29,7 @@
         nixpkgs.overlays = [
           inputs.emacs-overlay.overlays.default
           (import ../../packages/ghostty-themes/overlay.nix)
-          (import ../../packages/emacs/overlay-linux.nix)
+          (import ../../packages/emacs/overlay.nix)
           (import ../../packages/zmx/overlay.nix)
         ];
         home.stateVersion = "25.05";
