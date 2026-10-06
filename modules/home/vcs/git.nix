@@ -2,10 +2,6 @@
   config.programs.git = {
     enable = true;
     settings = {
-      user = {
-        name = "Javed Mohamed";
-        email = "jav@deadbeef.moe";
-      };
       pack = {
         threads = 0;
         windowMemory = "5G";
