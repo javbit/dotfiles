@@ -37,6 +37,7 @@
       {
         imports = [
           inputs.self.homeModules.emacs
+          inputs.self.homeModules.direnv
 
           ./profiles/home/shells.nix
           ./profiles/home/vcs.nix
@@ -80,7 +81,6 @@
     "/opt/homebrew/bin"
   ];
   programs.fish.enable = true;
-  programs.direnv.enable = true;
   security.pam.services.sudo_local = {
     enable = true;
     touchIdAuth = true;

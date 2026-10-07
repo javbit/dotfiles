@@ -16,6 +16,7 @@
     {
       imports = [
         inputs.self.homeModules.emacs
+        inputs.self.homeModules.direnv
         ../../profiles/home/shells.nix
         ../../profiles/home/vcs.nix
         inputs.self.homeModules.terminal
