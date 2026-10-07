@@ -58,6 +58,7 @@
           imports = [ ./modules/home/emacs ];
           programs.minimal-emacs.source = minimal-emacs-d;
         };
+        llm = ./modules/home/llm.nix;
         terminal = ./profiles/home/terminal.nix;
         direnv = ./modules/home/direnv.nix;
         vcs = ./modules/home/vcs;
