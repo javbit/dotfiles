@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   config.programs.git = {
     enable = true;
@@ -30,4 +32,5 @@
       ".direnv"
     ];
   };
+  config.home.packages = [ pkgs.git-branchless ];
 }
