@@ -65,6 +65,10 @@
         vcs = ./modules/home/vcs;
       };
 
+      nixosModules = {
+        tailscale = ./modules/nixos/tailscale.nix;
+      };
+
       packages = forAllSystems (pkgs: {
         ghostty-themes = pkgs.callPackage ./packages/ghostty-themes/default.nix { };
         zmx = pkgs.callPackage ./packages/zmx/default.nix { };
