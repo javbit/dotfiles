@@ -44,6 +44,9 @@ in
         tug = [ "bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-" ];
         prek = [ "util" "exec" "--" (lib.meta.getExe jj-prek) ];
       };
+      revset-aliases = {
+        "pr(b)" = "(::b- & (bookmarks() | trunk()))..b";
+      };
       ui = {
         pager = ":builtin";
         editor = if config.programs.emacs.enable then "emacsclient" else lib.meta.getExe pkgs.nano;
