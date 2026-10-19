@@ -10,6 +10,7 @@
     ./lisp.nix
     ./minimal-emacs.nix
     ./nix.nix
+    ./ocaml.nix
     ./service.nix
   ];
   config = {
