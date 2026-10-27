@@ -67,6 +67,7 @@
 
       nixosModules = {
         tailscale = ./modules/nixos/tailscale.nix;
+        dialout = ./modules/nixos/dialout.nix;
       };
 
       packages = forAllSystems (pkgs: {
@@ -96,6 +97,7 @@
           ./hosts/framework/minecraft.nix
           ./hosts/framework/samba.nix
           ./hosts/framework/seedbox.nix
+          self.nixosModules.dialout
           nixos-hardware.nixosModules.framework-12th-gen-intel
           determinate.nixosModules.default
           home-manager.nixosModules.default
