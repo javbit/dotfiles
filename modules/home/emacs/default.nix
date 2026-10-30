@@ -18,6 +18,7 @@
     programs.emacs = {
       enable = true;
       package = pkgs.my-emacs;
+      extraPackages = epkgs: [ epkgs.treesit-grammars.with-all-grammars ];
     };
     services.emacs' = {
       enable = true;
