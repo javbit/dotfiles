@@ -41,6 +41,8 @@
         f:
         nixpkgs.lib.genAttrs [
           "aarch64-darwin"
+          "aarch64-linux"
+          "x86_64-linux"
         ] (system: f nixpkgs.legacyPackages.${system});
     in
     {
