@@ -51,6 +51,7 @@
             (import ./packages/ghostty-themes/overlay.nix)
             (import ./packages/emacs/overlay.nix)
             (import ./packages/zmx/overlay.nix)
+            inputs.nix-output-monitor.overlays.default
             (final: prev: {
               # test_make_tmpdir writes to /tmp, which the Darwin sandbox denies.
               nixos-rebuild-ng = prev.nixos-rebuild-ng.overrideAttrs (old: {

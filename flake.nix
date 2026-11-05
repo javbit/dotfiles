@@ -18,6 +18,8 @@
         nixpkgs-stable.follows = "nixpkgs";
       };
     };
+    nix-output-monitor.url = "github:maralorn/nix-output-monitor";
+    nix-output-monitor.inputs.nixpkgs.follows = "nixpkgs";
     minimal-emacs-d = {
       url = "github:jamescherti/minimal-emacs.d";
       flake = false;
@@ -35,6 +37,7 @@
       home-manager,
       emacs-overlay,
       minimal-emacs-d,
+      nix-output-monitor,
     }:
     let
       forAllSystems =
@@ -50,6 +53,7 @@
         ghostty-themes = import ./packages/ghostty-themes/overlay.nix;
         zmx = import ./packages/zmx/overlay.nix;
         pi-coding-agent = import ./packages/pi-coding-agent/overlay.nix;
+        nix-output-monitor = nix-output-monitor.overlays.default;
         emacs = nixpkgs.lib.composeManyExtensions [
           emacs-overlay.overlays.default
           (import ./packages/emacs/overlay.nix)

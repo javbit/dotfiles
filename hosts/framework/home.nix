@@ -32,6 +32,7 @@
           (import ../../packages/ghostty-themes/overlay.nix)
           (import ../../packages/emacs/overlay.nix)
           (import ../../packages/zmx/overlay.nix)
+          inputs.nix-output-monitor.overlays.default
         ];
         home.stateVersion = "25.05";
       };

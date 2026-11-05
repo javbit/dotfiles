@@ -18,6 +18,7 @@
       recursive = true;
       source = "${pkgs.ghostty-themes}/themes";
     };
+    home.packages = [ pkgs.nix-output-monitor ];
     programs.aria2.enable = true;
   };
 }
