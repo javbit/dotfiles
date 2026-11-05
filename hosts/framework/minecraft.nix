@@ -4,15 +4,15 @@ let
   vanillaPort = 25565;
 
   gtnhPort = 25566;
-  gtnhVersion = "2.8.4";
+  gtnhVersion = "2.9.0";
   gtnhHeap = "6G";
   gtnhJre = pkgs.jdk25_headless;
 
   # Pinned GTNH server pack, unpacked into the store. The hash is of the zip
   # file itself (from `nix store prefetch-file`).
   gtnhZip = pkgs.fetchurl {
-    url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${gtnhVersion}_Server_Java_17-25.zip";
-    hash = "sha256-pY13GgfdcHU13wFRkIV1U5gpbB6RODYS0tMv82mQwIw=";
+    url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${gtnhVersion}_Server_Java_17-26.zip";
+    hash = "sha256-CrPeJuTQ3oCi3yhpFlcNmvMcM5TLH0Su6LmqHy6tmDE=";
   };
   gtnh-serverpack = pkgs.runCommandLocal "gtnh-serverpack-${gtnhVersion}" {
     nativeBuildInputs = [ pkgs.unzip ];
