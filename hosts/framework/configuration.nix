@@ -13,6 +13,7 @@
       ../../profiles/nixos/niri.nix
       ../../profiles/nixos/sdr.nix
       ../../profiles/nixos/initrd-ssh.nix
+      ../../profiles/nixos/no-sleep.nix
     ];
 
   # Bootloader.
