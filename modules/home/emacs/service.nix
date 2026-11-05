@@ -128,7 +128,13 @@ in
       {
         home.sessionVariables = mkIf cfg.defaultEditor {
           EDITOR = lib.getBin (
-            pkgs.writeShellScript "editor" ''exec ${lib.getBin cfg.package}/bin/emacsclient "''${@:---create-frame}"''
+            pkgs.writeShellScript "editor" ''
+              # Over SSH there's no GUI to create a frame on; use the terminal.
+              if [ -n "''${SSH_CONNECTION:-}" ] || [ -n "''${SSH_TTY:-}" ]; then
+                exec ${lib.getBin cfg.package}/bin/emacsclient -nw "$@"
+              fi
+              exec ${lib.getBin cfg.package}/bin/emacsclient "''${@:---create-frame}"
+            ''
           );
         };
       }

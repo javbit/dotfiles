@@ -49,7 +49,6 @@ in
       };
       ui = {
         pager = ":builtin";
-        editor = if config.programs.emacs.enable then "emacsclient" else lib.meta.getExe pkgs.nano;
         diff-formatter = [
           (lib.meta.getExe config.programs.difftastic.package)
           "--color=always"
